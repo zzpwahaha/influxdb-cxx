@@ -2,7 +2,7 @@
 # General project definition
 ####################################
 
-cmake_minimum_required(VERSION 3.12.0)
+cmake_minimum_required(VERSION 3.10.0)
 
 # disable testsuite when included
 # using add_subdirectory
