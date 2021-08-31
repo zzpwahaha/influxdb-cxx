@@ -136,14 +136,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 endif()
 unset(isSystemDir)
 
-# Install library
-install(TARGETS InfluxDB
-  EXPORT InfluxDBTargets
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
-
 # Create version file
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/cmake/InfluxDBConfigVersion.cmake"

@@ -58,3 +58,13 @@ target_link_libraries(InfluxDB
 
 # Use C++17
 target_compile_features(InfluxDB PUBLIC cxx_std_${CMAKE_CXX_STANDARD})
+
+
+# Install library
+# CMake < v3.13: install() in the same directory as the target (#98)
+install(TARGETS InfluxDB
+  EXPORT InfluxDBTargets
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
