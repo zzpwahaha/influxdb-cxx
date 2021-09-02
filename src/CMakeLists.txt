@@ -16,12 +16,23 @@ add_library(InfluxDB-BoostSupport OBJECT
     $<$<BOOL:${INFLUXCXX_WITH_BOOST}>:UnixSocket.cxx>
     )
 target_include_directories(InfluxDB-BoostSupport PRIVATE ${INTERNAL_INCLUDE_DIRS})
-target_link_libraries(InfluxDB-BoostSupport
-    PRIVATE
-        $<$<BOOL:${INFLUXCXX_WITH_BOOST}>:Boost::boost>
-        $<$<BOOL:${INFLUXCXX_WITH_BOOST}>:Boost::system>
-        date
+target_compile_options(InfluxDB-BoostSupport PRIVATE
+       $<TARGET_PROPERTY:date,INTERFACE_COMPILE_OPTIONS>
+       )
+ target_include_directories(InfluxDB-BoostSupport SYSTEM PRIVATE
+     $<TARGET_PROPERTY:date,INTERFACE_INCLUDE_DIRECTORIES>
+     )
+
+if (INFLUXCXX_WITH_BOOST)
+    target_compile_options(InfluxDB-BoostSupport PRIVATE
+        $<TARGET_PROPERTY:Boost::boost,INTERFACE_COMPILE_OPTIONS>
+        $<TARGET_PROPERTY:Boost::system,INTERFACE_COMPILE_OPTIONS>
         )
+    target_include_directories(InfluxDB-BoostSupport SYSTEM PRIVATE
+        $<TARGET_PROPERTY:Boost::boost,INTERFACE_INCLUDE_DIRECTORIES>
+        $<TARGET_PROPERTY:Boost::system,INTERFACE_INCLUDE_DIRECTORIES>
+        )
+endif()
 
 add_library(InfluxDB-Internal OBJECT LineProtocol.cxx)
 target_include_directories(InfluxDB-Internal PRIVATE ${INTERNAL_INCLUDE_DIRS})

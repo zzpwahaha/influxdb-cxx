@@ -29,20 +29,23 @@ add_unittest(PointTest)
 target_compile_options(PointTest PRIVATE $<$<NOT:$<BOOL:${MSVC}>>:-Wno-deprecated-declarations>)
 
 add_unittest(LineProtocolTest)
-target_link_libraries(LineProtocolTest PRIVATE InfluxDB-Internal)
+target_sources(LineProtocolTest PRIVATE $<TARGET_OBJECTS:InfluxDB-Internal>)
 
 add_unittest(InfluxDBTest)
 add_unittest(InfluxDBFactoryTest)
 
 add_unittest(HttpTest)
-target_link_libraries(HttpTest PRIVATE InfluxDB-Http CurlMock)
+target_link_libraries(HttpTest PRIVATE CurlMock)
+target_sources(HttpTest PRIVATE $<TARGET_OBJECTS:InfluxDB-Http>)
+
 
 add_unittest(NoBoostSupportTest)
 target_sources(NoBoostSupportTest PRIVATE ${PROJECT_SOURCE_DIR}/src/NoBoostSupport.cxx)
 
 if (INFLUXCXX_WITH_BOOST)
     add_unittest(BoostSupportTest)
-    target_link_libraries(BoostSupportTest PRIVATE InfluxDB-BoostSupport Threads::Threads Boost::system date)
+    target_sources(BoostSupportTest PRIVATE $<TARGET_OBJECTS:InfluxDB-BoostSupport>)
+    target_link_libraries(BoostSupportTest PRIVATE Threads::Threads Boost::system date)
 endif()
 
 
