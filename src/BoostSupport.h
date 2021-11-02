@@ -34,6 +34,6 @@ namespace influxdb::internal
 {
     std::vector<Point> queryImpl(Transport* transport, const std::string& query);
 
-    std::unique_ptr<Transport> withUdpTransport(const http::url& uri);
-    std::unique_ptr<Transport> withUnixSocketTransport(const http::url& uri);
+    std::unique_ptr<Transport> withUdpTransport(const http::Url& uri);
+    std::unique_ptr<Transport> withUnixSocketTransport(const http::Url& uri);
 }

@@ -33,23 +33,23 @@ namespace influxdb::test
 {
     TEST_CASE("With UDP returns transport", "[BoostSupportTest]")
     {
-        CHECK(internal::withUdpTransport(http::url{}) != nullptr);
+        CHECK(internal::withUdpTransport(http::Url{}) != nullptr);
     }
 
     TEST_CASE("With Unix socket returns transport", "[BoostSupportTest]")
     {
-        CHECK(internal::withUnixSocketTransport(http::url{}) != nullptr);
+        CHECK(internal::withUnixSocketTransport(http::Url{}) != nullptr);
     }
 
     TEST_CASE("UDP transport throws on create database", "[BoostSupportTest]")
     {
-        auto udp = internal::withUdpTransport(http::url{});
+        auto udp = internal::withUdpTransport(http::Url{});
         CHECK_THROWS_AS(udp->createDatabase(), std::runtime_error);
     }
 
     TEST_CASE("Unix socket transport throws on create database", "[BoostSupportTest]")
     {
-        auto udp = internal::withUnixSocketTransport(http::url{});
+        auto udp = internal::withUnixSocketTransport(http::Url{});
         CHECK_THROWS_AS(udp->createDatabase(), std::runtime_error);
     }
 

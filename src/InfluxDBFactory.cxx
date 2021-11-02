@@ -38,7 +38,7 @@ namespace influxdb
 {
     namespace internal
     {
-        std::unique_ptr<Transport> withHttpTransport(const http::url& uri)
+        std::unique_ptr<Transport> withHttpTransport(const http::Url& uri)
         {
             auto transport = std::make_unique<transports::HTTP>(uri.url);
             if (!uri.user.empty())
@@ -52,7 +52,7 @@ namespace influxdb
 
     std::unique_ptr<Transport> InfluxDBFactory::GetTransport(const std::string& url)
     {
-        static const std::map<std::string, std::function<std::unique_ptr<Transport>(const http::url&)>> map = {
+        static const std::map<std::string, std::function<std::unique_ptr<Transport>(const http::Url&)>> map = {
             {"udp", internal::withUdpTransport},
             {"http", internal::withHttpTransport},
             {"https", internal::withHttpTransport},
@@ -60,7 +60,7 @@ namespace influxdb
         };
 
         auto urlCopy = url;
-        http::url parsedUrl = http::ParseHttpUrl(urlCopy);
+        auto parsedUrl = http::ParseHttpUrl(urlCopy);
         if (parsedUrl.protocol.empty())
         {
             throw InfluxDBException(__func__, "Ill-formed URI");

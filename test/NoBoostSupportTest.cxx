@@ -46,12 +46,12 @@ namespace influxdb::test
 
     TEST_CASE("With UDP throws transport unconditionally", "[NoBoostSupportTest]")
     {
-        CHECK_THROWS_AS(internal::withUdpTransport(http::url{}), InfluxDBException);
+        CHECK_THROWS_AS(internal::withUdpTransport(http::Url{}), InfluxDBException);
     }
 
     TEST_CASE("With Unix socket transport throws unconditionally", "[NoBoostSupportTest]")
     {
-        CHECK_THROWS_AS(internal::withUnixSocketTransport(http::url{}), InfluxDBException);
+        CHECK_THROWS_AS(internal::withUnixSocketTransport(http::Url{}), InfluxDBException);
     }
 
 }

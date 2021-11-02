@@ -31,12 +31,12 @@ namespace influxdb::internal
         throw InfluxDBException("InfluxDB", "Query requires Boost");
     }
 
-    std::unique_ptr<Transport> withUdpTransport([[maybe_unused]] const http::url& uri)
+    std::unique_ptr<Transport> withUdpTransport([[maybe_unused]] const http::Url& uri)
     {
         throw InfluxDBException("InfluxDBFactory", "UDP transport requires Boost");
     }
 
-    std::unique_ptr<Transport> withUnixSocketTransport([[maybe_unused]] const http::url& uri)
+    std::unique_ptr<Transport> withUnixSocketTransport([[maybe_unused]] const http::Url& uri)
     {
         throw InfluxDBException("InfluxDBFactory", "Unix socket transport requires Boost");
     }

@@ -87,12 +87,12 @@ namespace influxdb::internal
         return points;
     }
 
-    std::unique_ptr<Transport> withUdpTransport(const http::url& uri)
+    std::unique_ptr<Transport> withUdpTransport(const http::Url& uri)
     {
         return std::make_unique<transports::UDP>(uri.host, uri.port);
     }
 
-    std::unique_ptr<Transport> withUnixSocketTransport(const http::url& uri)
+    std::unique_ptr<Transport> withUnixSocketTransport(const http::Url& uri)
     {
         return std::make_unique<transports::UnixSocket>(uri.path);
     }

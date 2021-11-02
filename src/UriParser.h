@@ -26,7 +26,7 @@
 
 
 namespace http {
-    struct url {
+    struct Url {
         std::string protocol, user, password, host, path, search, url;
         int port;
     };
@@ -84,7 +84,7 @@ namespace http {
 
 
     //--- Public Interface -------------------------------------------------------------~
-    static inline url ParseHttpUrl(std::string &in) {
+    static inline Url ParseHttpUrl(std::string &in) {
         const auto url = in;
         const auto protocol = ExtractProtocol(in);
         const auto search = ExtractSearch(in);
@@ -95,7 +95,7 @@ namespace http {
         const auto port = ExtractPort(in);
         const auto host = in;
 
-        return {protocol, user, password, host, path, search, url, port};
+        return Url{protocol, user, password, host, path, search, url, port};
     }
 }
 #endif
