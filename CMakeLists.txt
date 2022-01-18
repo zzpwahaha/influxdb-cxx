@@ -114,9 +114,8 @@ add_subdirectory("src")
 ####################################
 # Tests
 ####################################
-
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_LIST_DIR}/3rd-party/x64-windows")
 if (INFLUXCXX_TESTING)
-  enable_testing()
   add_subdirectory("test")
 endif()
 
