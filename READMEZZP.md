@@ -6,7 +6,7 @@ For this build, without testing we just need ***boost*** as well as ***curl***. 
 
 -  ***Boost***:
    1. To monitor the process, we added `set(Boost_DEBUG ON)` in the CMakeLists.txt 
-   2. and it turns out we need a complete build of boost with both .dll and .lib in folder boost1_17_0\stage\lib. To get this, we need to run `b2  --build-type=complete stage` after bootstraping boost.
+   2. and it turns out we need a complete build of boost with both .dll and .lib in folder boost1_17_0\stage\lib. To get this, we need to run `b2  --build-type=complete stage` after bootstraping boost (Full command `./b2.exe address-model=64 threading=multi --build-type=complete`).
    3. Furthermore, to make sure the makefile can find boost, we need to add 
     ```c++
         set(BOOST_ROOT "C:/Software/Boost/boost_1_76_0")
