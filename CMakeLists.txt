@@ -3,7 +3,7 @@
 ####################################
 
 cmake_minimum_required(VERSION 3.12.0)
-
+set(Boost_DEBUG OFF)
 # disable testsuite when included
 # using add_subdirectory
 if(DEFINED PROJECT_NAME)
@@ -84,11 +84,17 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 find_package(Threads REQUIRED)
 find_package(CURL REQUIRED MODULE)
 
+# SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "C:/Software/Boost/boost_1_76_0")
+# SET(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "C:/Software/Boost/boost_1_76_0/libs")
+set(BOOST_ROOT "C:/Software/Boost/boost_1_76_0")
+set(BOOST_INCLUDEDIR  "C:/Software/Boost/boost_1_76_0")
+set(BOOST_LIBRARYDIR "C:/Software/Boost/boost_1_76_0/stage/lib")
 if (INFLUXCXX_WITH_BOOST)
     # Fixes warning when using boost from brew
     set(Boost_USE_MULTITHREADED TRUE)
-
-    find_package(Boost REQUIRED COMPONENTS system)
+    find_package(Boost REQUIRED COMPONENTS
+    system
+    )
 endif()
 
 add_subdirectory(3rd-party)
@@ -108,9 +114,8 @@ add_subdirectory("src")
 ####################################
 # Tests
 ####################################
-
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_LIST_DIR}/3rd-party/x64-windows")
 if (INFLUXCXX_TESTING)
-  enable_testing()
   add_subdirectory("test")
 endif()
 
