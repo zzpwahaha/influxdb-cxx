@@ -1,5 +1,5 @@
 # step-by-step walk in for building InfluxDB on windows 
-by Zhenpu Zhang @ 01/17/2022
+by Zhenpu Zhang @ 01/17/2022 
 
 ## install dependency
 For this build, without testing we just need ***boost*** as well as ***curl***. And if we want to test it after build, we would need ***catch2*** and ***trompeloeil*** further.
