@@ -1,0 +1,9 @@
+Package: trompeloeil
+Version: 41
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 2ae7fc1c79ab58759841e9f9361cc3be775e6ffc54a229e0c2d3af54531abb80
+Description: A thread-safe header-only mocking framework for C++11/14 using the Boost Software License 1.0
+Type: Port
+Status: install ok half-installed

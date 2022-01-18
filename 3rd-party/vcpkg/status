@@ -1,0 +1,81 @@
+Package: vcpkg-cmake
+Version: 2021-12-20
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 39bef4568d9b1df1728195eb0fd0de3f6f41f840f1ace4d17121e309098d529f
+Type: Port
+Status: install ok installed
+
+Package: vcpkg-cmake-config
+Version: 2021-12-28
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 589681c0bb726ffc84598f419314855a652f7cc275a32a00785406e2a72aa5e7
+Type: Port
+Status: install ok installed
+
+Package: zlib
+Version: 1.2.11
+Port-Version: 13
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 3cd35aabeeef1874d0d916845d63a2953ab28c72dd4bed640fe64041521baad9
+Description: A compression library
+Type: Port
+Status: install ok installed
+
+Package: catch2
+Version: 2.13.8
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: d7e6b6d62dc8c626295384665edd4edb2eda7068f1e8d182d0be702a5dd57a80
+Description: A modern, header-only test framework for unit testing.
+Type: Port
+Status: install ok installed
+
+Package: curl
+Version: 7.80.0
+Depends: vcpkg-cmake, vcpkg-cmake-config, zlib
+Architecture: x64-windows
+Multi-Arch: same
+Abi: d88aad6ae229d73f9ef0cde6c626dd225ca29541f083489920fc26d13620be9f
+Description: A library for transferring data with URLs
+Type: Port
+Default-Features: non-http, ssl
+Status: install ok installed
+
+Package: curl
+Feature: non-http
+Architecture: x64-windows
+Multi-Arch: same
+Description: Enables protocols beyond HTTP/HTTPS/HTTP2
+Type: Port
+Status: install ok installed
+
+Package: curl
+Feature: schannel
+Depends: curl
+Architecture: x64-windows
+Multi-Arch: same
+Description: SSL support (Secure Channel)
+Type: Port
+Status: install ok installed
+
+Package: curl
+Feature: ssl
+Depends: curl
+Architecture: x64-windows
+Multi-Arch: same
+Description: Default SSL backend
+Type: Port
+Status: install ok installed
+
+Package: curl
+Feature: sspi
+Architecture: x64-windows
+Multi-Arch: same
+Description: SSPI support
+Type: Port
+Status: install ok installed
+
