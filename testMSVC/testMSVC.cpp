@@ -12,7 +12,9 @@ int main()
     // Available over HTTP only
     auto influxdb = influxdb::InfluxDBFactory::Get("http://admin:Twizzler@6.1.1.77:8086?db=home");
     /// Pass an IFQL to get list of points
-    std::vector<influxdb::Point> points = influxdb->query("SELECT \"Cold Shield\" from ColdEdge order by time desc limit 1");
+    //std::vector<influxdb::Point> points = influxdb->query("SELECT \"Cold Shield\" from ColdEdge order by time desc limit 1");
+    //std::vector<influxdb::Point> points = influxdb->query("SELECT \"Cold finger\" from ColdEdge order by time desc limit 1");
+    std::vector<influxdb::Point> points = influxdb->query("SELECT \"HC-4 outlet\" from \"6_month\".\"Stinger\" order by time desc limit 1");
     std::time_t t = std::chrono::system_clock::to_time_t(points[0].getTimestamp());
     char tmBuff[50];
     ctime_s(tmBuff, sizeof(tmBuff), &t);
