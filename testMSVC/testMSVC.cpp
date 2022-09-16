@@ -10,12 +10,17 @@
 int main()
 {
     // Available over HTTP only
-    auto influxdb = influxdb::InfluxDBFactory::Get("http://admin:Twizzler@6.1.1.77:8086?db=home");
+    //auto influxdb = influxdb::InfluxDBFactory::Get("http://admin:Twizzler@6.1.1.77:8086?db=home");
     /// Pass an IFQL to get list of points
     //std::vector<influxdb::Point> points = influxdb->query("SELECT \"Cold Shield\" from ColdEdge order by time desc limit 1");
     //std::vector<influxdb::Point> points = influxdb->query("SELECT \"Cold finger\" from ColdEdge order by time desc limit 1");
-    std::vector<influxdb::Point> points = influxdb->query("SELECT \"HC-4 outlet\" from \"6_month\".\"Stinger\" order by time desc limit 1");
+    //std::vector<influxdb::Point> points = influxdb->query("SELECT \"HC-4 outlet\" from \"6_month\".\"Stinger\" order by time desc limit 1");
+
+    auto influxdb = influxdb::InfluxDBFactory::Get("http://grafana:Twizzler@6.1.1.93:8086?db=monitoring");
+    std::vector<influxdb::Point> points = influxdb->query("SELECT \"pressure\" from \"B240_main_chamber\" order by time desc limit 1");
     std::time_t t = std::chrono::system_clock::to_time_t(points[0].getTimestamp());
+    std::chrono::time_point<std::chrono::system_clock> tt = points[0].getTimestamp();
+    auto a = std::chrono::duration_cast<std::chrono::seconds>(tt.time_since_epoch()).count();
     char tmBuff[50];
     ctime_s(tmBuff, sizeof(tmBuff), &t);
     std::string ss(tmBuff);
